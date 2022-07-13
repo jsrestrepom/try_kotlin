@@ -1,17 +1,20 @@
 package linkedin.learning.kotlin_essential_training
 
 
-fun main() {
-    var cardPoints = 7_000
+fun readCardPointsFromInput(): Int {
+    print("Enter points: ")
+    val input = readLine() ?: ""
+    return input.toIntOrNull() ?: 0
+}
 
-    val cardLevel: String = if (cardPoints >= 1000 && cardPoints < 1000) {
-        "pearl"
-    } else if (cardPoints >= 1000 && cardPoints < 5_000) {
-        "silver"
-    } else if (cardPoints >= 5_000 && cardPoints < 10_000) {
-        "gold"
-    } else {
-        "platinum"
+fun main() {
+    val cardPoints = readCardPointsFromInput()
+
+    val cardLevel: String = when (cardPoints) {
+        in 0..999 -> "pearl"
+        in 1000 .. 4_999 -> "silver"
+        in 5_000 .. 9_999 -> "gold"
+        else -> "platinum"
     }
 
     val plural = if (cardPoints > 1 || cardPoints == 0) "s" else ""
