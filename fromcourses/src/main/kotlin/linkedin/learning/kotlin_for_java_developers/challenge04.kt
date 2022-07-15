@@ -18,11 +18,16 @@ fun main() {
     val combos = students.map{ s -> s.name + ":" + s.age}
     println("Combos: $combos")
 
-    println("The oldest student is ")
+    println("The oldest student is ${students.maxBy { it.age }}")
 
-    println("Long names: ")
+    val studentsWithLongNames = students.filter { it.name.length > 5 }
+    println("Long names: $studentsWithLongNames")
 
-    println("The student with the shortest name is ")
+    println("The student first student with the shortest name is ${students.minBy { it.name.length }}")
 
-    println("Short names: ")
+    val studentWithShortestName = students.minByOrNull { it.name.length }
+    if (studentWithShortestName != null) {
+        val studentsShortsNames = students.filter { it.name.length == studentWithShortestName.name.length }
+        println("Short names: $studentsShortsNames")
+    }
 }
